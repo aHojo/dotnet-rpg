@@ -19,20 +19,20 @@ public class CharacterController : ControllerBase
   [HttpGet()]
   public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Get()
   {
-    var characters = _characterService.GetAllCharacters();
+    var characters = await _characterService.GetAllCharacters();
     return Ok(characters);
   }
 
   [HttpGet("{id}")]
   public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> GetSingle(int id)
   {
-    return Ok(_characterService.GetCharacterById(id));
+    return Ok(await _characterService.GetCharacterById(id));
   }
 
   [HttpPost]
   public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> AddCharacter(AddCharacterDto newCharacter)
   {
-    var characters = _characterService.AddCharacter(newCharacter);
+    var characters = await _characterService.AddCharacter(newCharacter);
     return Ok(characters);
   }
 
